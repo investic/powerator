@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background:#ccc;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#app{
+  top:100px;
+  left: 50px
+  
+}
