@@ -37,7 +37,7 @@ enyo.kind({
       this.$.amp.setText('0');
       this.$.supamp.setText('1');
       var todos = [];
-      if(this.$.ballpit.children.length <= 3){
+      if(this.$.ballpit.children.length <= 2){
         var bucle = this.$.ballpit.children.length;
         this.$.fps.setContent(inTime/100);
         this.$.wts.setContent((inTime/100)*220);
@@ -50,7 +50,9 @@ enyo.kind({
         // this.$.ballpit.createComponent({kind: "canvas.Circle", bounds: {l: l, t: t, w: inTime}, color: 'rgba('+inTime+',14,'+enyo.irand(inTime*8)+', .5)', bounce: bounce, vel: 0, owner: this});
         this.$.ballpit.createComponent({kind: "canvas.Rectangle", bounds: {l:bucle*24 , t: 500, w:20, h:-inTime*5}, color: 'rgba('+inTime+',14,'+enyo.irand(inTime*8)+', 9)', bounce: bounce, vel: 0, owner: this});
       }else{
-         console.log(this.$.ballpit.children);
+        for (var i = 0; i < this.$.ballpit.children.length; i++) {
+          console.log(this.$.ballpit.children[i]);
+        };
         // this.$.ballpit.children[0].destroy()
 			  // enyo.cancelRequestAnimationFrame(this.cancel);
 		    // this.setupBalls();
