@@ -25,13 +25,6 @@ enyo.kind({
 		// {tag: "span", content:"Balls: "},
 		// {tag: "input", name: "balls", attributes: {value: "10", placeholder: "Number of Balls"}}
 	],
-  resolucion: function(valor){
-    if(valor === 'w'){
-      return document.compatMode=='CSS1Compat' && !window.opera?document.documentElement.clientWidth:document.body.clientWidth;
-   }else{
-      return document.compatMode=='CSS1Compat' && !window.opera?document.documentElement.clientHeight:document.body.clientHeight;
-    }
-  },
   timerTriggered: function(inSender, inTime) {
      // this.log(this.getBalls());
       this.$.amp.setText('0');
@@ -50,12 +43,17 @@ enyo.kind({
         // this.$.ballpit.createComponent({kind: "canvas.Circle", bounds: {l: l, t: t, w: inTime}, color: 'rgba('+inTime+',14,'+enyo.irand(inTime*8)+', .5)', bounce: bounce, vel: 0, owner: this});
         this.$.ballpit.createComponent({kind: "canvas.Rectangle", bounds: {l:bucle*24 , t: 500, w:20, h:-inTime*5}, color: 'rgba('+inTime+',14,'+enyo.irand(inTime*8)+', 9)', bounce: bounce, vel: 0, owner: this});
       }else{
-        for (var i = 0; i < this.$.ballpit.children.length; i++) {
-          console.log(this.$.ballpit.children[i]);
+        var barra =  this.$.ballpit;
+        // console.log(barra);
+		     this.setupBalls(); 
+        for (var i = 0; i < barra.children.length; i++) {
+           this.log(barra.children[i])
+           this.$ballpit.createComponent(barra.children[i]);
         };
+		    /* this.setupBalls(); */
+
         // this.$.ballpit.children[0].destroy()
 			  // enyo.cancelRequestAnimationFrame(this.cancel);
-		    // this.setupBalls();
       }
     // this.log("Simulated Service Message Occurred at " + inTime);
   },
@@ -68,6 +66,7 @@ enyo.kind({
 	setupBalls: function() {
 		// pause loop to update the balls
 		if (this.cancel) {
+      console.log("movidddd");
 			enyo.cancelRequestAnimationFrame(this.cancel);
 		}
 		this.loopStart = Date.now();
